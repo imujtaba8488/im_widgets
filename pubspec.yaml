@@ -1,0 +1,25 @@
+name: im_widgets
+description: A growing collection of widgets primarily used to step-through several widgets in an application. 
+version: 0.1.2+4
+homepage: https://twitter.com/imujtaba8488
+repository: https://github.com/imujtaba8488/package_im_stepper.git
+issue_tracker: https://github.com/imujtaba8488/package_im_stepper/issues
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  im_shapes:
+    path: '../im_shapes'
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  # assets:
+  #   - assets/
