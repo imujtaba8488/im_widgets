@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:im_stepper/src/circle%20meter/circle.dart';
-import 'package:im_stepper/src/circle%20meter/gauge_stepper.dart';
-
-import 'im_widgets.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +19,6 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('Icon Stepper Example'),
         ),
-        body: Align(child: Circle.full()),
       ),
     );
   }
