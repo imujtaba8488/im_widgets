@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:im_widgets/src/meter/circular_shape_assembler.dart';
+import 'package:im_widgets/src/radial_gauge/painters/dial_painter.dart';
+import 'package:im_widgets/src/radial_gauge/painters/pointer_painter.dart';
+
+import 'src/radial_gauge/radial_gauge.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,9 +21,15 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('im_widgets'),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: CircularShapeAssembler(),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: 200,
+              width: 200,
+              child: RadialGauge(),
+            ),
+          ],
         ),
       ),
     );

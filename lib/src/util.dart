@@ -1,10 +1,9 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:im_shapes/im_shapes.dart';
 
-List<Point<double>> pointsCoordinatesOnArc({
+List<Offset> pointsCoordinatesOnArc({
   @required Offset center,
   @required double radius,
   @required double startAngle,
@@ -28,7 +27,7 @@ List<Point<double>> pointsCoordinatesOnArc({
   // Distance in angle between the endAngle and the startAngle.
   // double gapAngle = 360 - sweepAngle;
 
-  List<Point<double>> coords = [];
+  List<Offset> coords = [];
 
   // This one is manual, since the moveAngle is always going to start past the startAngle.
   coords.add(
@@ -61,7 +60,7 @@ List<Point<double>> pointsCoordinatesOnArc({
   return coords;
 }
 
-Point<double> singleCoordinate({
+Offset singleCoordinate({
   Offset center,
   double radius,
   double sweepAngle,
@@ -69,7 +68,7 @@ Point<double> singleCoordinate({
   double xCoord = center.dx + (radius - center.dx) * cos(sweepAngle);
   double yCoord = center.dy + (radius - center.dy) * sin(sweepAngle);
 
-  return Point(xCoord, yCoord);
+  return Offset(xCoord, yCoord);
 }
 
 void drawCircle({
@@ -78,6 +77,8 @@ void drawCircle({
   @required double radius,
   @required double startAngle,
   @required double sweepAngle,
+  @required Paint brush,
+  @required bool useCenter,
 }) {
   assert(startAngle >= 0 && sweepAngle <= 360);
 
@@ -85,10 +86,8 @@ void drawCircle({
     Rect.fromCenter(center: center, width: radius, height: radius),
     startAngle,
     sweepAngle,
-    false,
-    Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 0,
+    useCenter,
+    brush,
   );
 }
 
