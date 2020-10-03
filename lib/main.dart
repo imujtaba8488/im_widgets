@@ -24,10 +24,22 @@ class _MyAppState extends State<MyApp> {
         body: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              height: 200,
-              width: 200,
-              child: RadialGauge(),
+            RadialGauge(
+              // startAngle: 0,
+              // sweepAngle: 350,
+              backgroundColor: Colors.black,
+              dialDecoration: DialDecoration(color: Colors.orange, width: 5),
+              textStyle: TextStyle(
+                fontSize: 8,
+                color: Colors.white,
+              ),
+              pointerDecoration: PointerDecoration(
+                color: Colors.amber,
+                width: 5,
+              ),
+              dataPoints: 30,
+              pointTo: 3,
+              rangeMultiplier: 1,
             ),
           ],
         ),

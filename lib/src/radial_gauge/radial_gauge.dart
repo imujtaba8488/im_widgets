@@ -51,7 +51,39 @@ class RadialGauge extends StatefulWidget {
   _RadialGaugeState createState() => _RadialGaugeState();
 }
 
-class _RadialGaugeState extends State<RadialGauge> {
+class _RadialGaugeState extends State<RadialGauge>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  Animation pointTo;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      duration: Duration(milliseconds: 1500),
+      vsync: this,
+    )..addListener(() {
+        setState(() {});
+      });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(RadialGauge oldWidget) {
+    pointTo = IntTween(begin: oldWidget.pointTo, end: widget.pointTo).animate(
+      CurvedAnimation(parent: controller, curve: Curves.easeOut),
+    );
+    controller.reset();
+    controller.forward();
+    super.didUpdateWidget(oldWidget);
+  }
+
   @override
   Widget build(BuildContext context) {
     return LimitedBox(
@@ -99,7 +131,7 @@ class _RadialGaugeState extends State<RadialGauge> {
                 points: widget.dataPoints,
                 startAngle: widget.startAngle,
                 sweepAngle: widget.sweepAngle,
-                pointTo: widget.pointTo,
+                pointTo: pointTo?.value ?? widget.pointTo,
                 decoration: widget.pointerDecoration,
               ),
             ),
