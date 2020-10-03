@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:im_widgets/src/radial_gauge/gauge_element.dart';
+import 'package:im_widgets/src/gauge_element.dart';
+import 'package:im_widgets/src/painters/dials/dial_painter.dart';
+import 'package:im_widgets/src/painters/pointers/pointer_painter.dart';
+import 'package:im_widgets/src/painters/range/range_painter.dart';
 
-import 'painters/dial_painter.dart';
-import 'painters/pointer_painter.dart';
-import 'painters/range_painter.dart';
 
 class RadialGauge extends StatefulWidget {
   final Color backgroundColor;
