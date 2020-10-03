@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:im_shapes/im_shapes.dart';
 
-List<Offset> pointsCoordinatesOnArc({
+List<Offset> pointsOffsetsOnArc({
   @required Offset center,
   @required double radius,
   @required double startAngle,
@@ -71,7 +71,7 @@ Offset singleCoordinate({
   return Offset(xCoord, yCoord);
 }
 
-void drawCircle({
+void drawCircleUsingArc({
   @required Canvas canvas,
   @required Offset center,
   @required double radius,
@@ -80,12 +80,12 @@ void drawCircle({
   @required Paint brush,
   @required bool useCenter,
 }) {
-  assert(startAngle >= 0 && sweepAngle <= 360);
+  assert(startAngle >= 0.0 && sweepAngle <= 360.0);
 
   canvas.drawArc(
     Rect.fromCenter(center: center, width: radius, height: radius),
-    startAngle,
-    sweepAngle,
+    toRadians(startAngle),
+    toRadians(sweepAngle),
     useCenter,
     brush,
   );

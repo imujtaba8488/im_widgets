@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:im_widgets/src/radial_gauge/gauge_element.dart';
 import 'package:im_widgets/src/radial_gauge/painters/dial_painter.dart';
 import 'package:im_widgets/src/radial_gauge/painters/pointer_painter.dart';
 
@@ -21,27 +22,18 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text('im_widgets'),
         ),
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            RadialGauge(
-              // startAngle: 0,
-              // sweepAngle: 350,
-              backgroundColor: Colors.black,
-              dialDecoration: DialDecoration(color: Colors.orange, width: 5),
-              textStyle: TextStyle(
-                fontSize: 8,
-                color: Colors.white,
-              ),
-              pointerDecoration: PointerDecoration(
-                color: Colors.amber,
-                width: 5,
-              ),
-              dataPoints: 30,
-              pointTo: 3,
-              rangeMultiplier: 1,
-            ),
-          ],
+        body: RadialGauge(
+          startAngle: 0,
+          sweepAngle: 30,
+          pointTo: 0,
+          dataPoints: 5,
+          dialDecoration: DialDecoration(color: Colors.green, width: 5),
+          pointerDecoration: PointerDecoration(color: Colors.green, width: 5),
+          textStyle: TextStyle(
+            color: Colors.green,
+            fontSize: 12,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

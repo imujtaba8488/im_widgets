@@ -35,7 +35,7 @@ class RadialGauge extends StatefulWidget {
     );
 
     assert(
-      sweepAngle >= 190.0 && sweepAngle <= 350.0,
+      sweepAngle >= 0.0 && sweepAngle <= 350.0,
       'sweepAngle must be from 190 to 350',
     );
 
@@ -96,23 +96,10 @@ class _RadialGaugeState extends State<RadialGauge>
             GaugeElement(
               padding: const EdgeInsets.all(15.0),
               painter: DialPainter(
-                  startAngle: widget.startAngle,
-                  sweepAngle: widget.sweepAngle,
-                  points: widget.dataPoints,
-                  showLines: true,
-                  decoration: widget.dialDecoration),
-            ),
-            GaugeElement(
-              padding: const EdgeInsets.all(25.0),
-              painter: DialPainter(
                 startAngle: widget.startAngle,
                 sweepAngle: widget.sweepAngle,
                 points: widget.dataPoints,
-                showLines: false,
-                decoration: DialDecoration(
-                  color: widget.backgroundColor ?? Colors.grey[50],
-                ),
-                isFilled: true,
+                decoration: widget.dialDecoration,
               ),
             ),
             GaugeElement(

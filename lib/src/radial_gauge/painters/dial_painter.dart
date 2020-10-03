@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:im_shapes/im_shapes.dart';
 
 import '../../util.dart';
 
@@ -10,15 +9,17 @@ class DialPainter extends CustomPainter {
   final bool showLines;
   final DialDecoration decoration;
   final bool isFilled;
+  final double tickLength;
   Paint _brush;
 
   DialPainter({
     this.startAngle = 0.0,
     this.sweepAngle = 360.0,
-    this.points = 0,
+    this.points = 40,
     this.showLines = false,
-    this.decoration,
+    this.decoration = const DialDecoration(),
     this.isFilled = false,
+    this.tickLength = 10.0,
   });
 
   @override
@@ -29,32 +30,43 @@ class DialPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..style = isFilled ? PaintingStyle.fill : PaintingStyle.stroke;
 
-    drawCircle(
+    Offset center = size.center(Offset(0.0, 0.0));
+
+    drawCircleUsingArc(
       canvas: canvas,
+      center: center,
       radius: size.width,
-      center: size.center(Offset(0.0, 0.0)),
-      startAngle: toRadians(startAngle),
-      sweepAngle: toRadians(sweepAngle),
+      startAngle: startAngle,
+      sweepAngle: sweepAngle,
       brush: _brush,
       useCenter: false,
     );
 
-    if (showLines) {
-      List<Offset> coordinates = pointsCoordinatesOnArc(
-        center: size.center(Offset(0.0, 0.0)),
-        radius: size.width,
-        startAngle: startAngle,
-        sweepAngle: sweepAngle,
-        points: points,
-      );
+    // Get outer offsets.
+    List<Offset> offsets = pointsOffsetsOnArc(
+      center: center,
+      points: points,
+      radius: size.width,
+      startAngle: startAngle,
+      sweepAngle: sweepAngle,
+    );
 
-      for (int i = 0; i < coordinates.length; i++) {
-        canvas.drawLine(
-          size.center(Offset(0.0, 0.0)),
-          Offset(coordinates[i].dx, coordinates[i].dy),
-          _brush,
-        );
-      }
+    // Get inner offsets
+    List<Offset> offsets2 = pointsOffsetsOnArc(
+      center: center,
+      points: points,
+      radius: size.width - tickLength,
+      startAngle: startAngle,
+      sweepAngle: sweepAngle,
+    );
+
+    // Draw lines from outer offsets to inner offsets to get the tick marks.
+    for (int i = 0; i < offsets.length; i++) {
+      canvas.drawLine(
+        offsets[i],
+        Offset(offsets2[i].dx, offsets2[i].dy),
+        _brush,
+      );
     }
   }
 

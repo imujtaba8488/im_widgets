@@ -19,7 +19,7 @@ class RangePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    List<Offset> coordinates = pointsCoordinatesOnArc(
+    List<Offset> coordinates = pointsOffsetsOnArc(
       center: size.center(Offset(0.0, 0.0)),
       radius: size.width - 20,
       startAngle: startAngle,

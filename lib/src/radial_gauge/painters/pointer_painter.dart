@@ -27,7 +27,7 @@ class PointerPainter extends CustomPainter {
       ..strokeWidth = decoration.width
       ..strokeCap = decoration.style;
 
-    List<Offset> coordinates = pointsCoordinatesOnArc(
+    List<Offset> coordinates = pointsOffsetsOnArc(
       center: center,
       points: points,
       radius: size.width - 50,
