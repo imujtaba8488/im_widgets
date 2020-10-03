@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../util.dart';
+import 'package:im_util/im_util.dart';
 
 class DialPainter extends CustomPainter {
   final double startAngle;
@@ -32,35 +31,36 @@ class DialPainter extends CustomPainter {
 
     Offset center = size.center(Offset(0.0, 0.0));
 
-    drawCircleUsingArc(
-      canvas: canvas,
-      center: center,
-      radius: size.width,
-      startAngle: startAngle,
-      sweepAngle: sweepAngle,
-      brush: _brush,
-      useCenter: false,
+    // Draw the enclosing path.
+    canvas.drawArc(
+      Rect.fromCenter(center: center, width: size.width, height: size.width),
+      toRadians(startAngle),
+      toRadians(sweepAngle),
+      false,
+      _brush,
     );
 
-    // Get outer offsets.
+    // To create the ticks, first the outer path (arc / circle) offsets are generated and than the inner path offsets. Finally, both are joined to create the ticks.
+
+    // Get outer path offsets.
     List<Offset> offsets = pointsOffsetsOnArc(
       center: center,
-      points: points,
+      numberOfPoints: points,
       radius: size.width,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
     );
 
-    // Get inner offsets
+    // Get inner path offsets
     List<Offset> offsets2 = pointsOffsetsOnArc(
       center: center,
-      points: points,
+      numberOfPoints: points,
       radius: size.width - tickLength,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
     );
 
-    // Draw lines from outer offsets to inner offsets to get the tick marks.
+    // Draw lines from outer offsets to inner offsets to draw the tick marks.
     for (int i = 0; i < offsets.length; i++) {
       canvas.drawLine(
         offsets[i],
@@ -81,5 +81,5 @@ class DialDecoration {
   final Color color;
   final double width;
 
-  const DialDecoration({this.color = Colors.black, this.width = 1});
+  const DialDecoration({this.color = Colors.black, this.width = 1.0});
 }

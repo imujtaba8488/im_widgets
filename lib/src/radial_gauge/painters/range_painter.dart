@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../util.dart';
+import 'package:im_util/im_util.dart';
 
 class RangePainter extends CustomPainter {
   final double startAngle;
@@ -24,7 +23,7 @@ class RangePainter extends CustomPainter {
       radius: size.width - 20,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
-      points: points,
+      numberOfPoints: points,
     );
 
     for (int i = 0; i < coordinates.length; i++) {

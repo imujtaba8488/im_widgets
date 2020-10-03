@@ -13,9 +13,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  im_shapes:
-    path: '../im_shapes'
-  syncfusion_flutter_gauges: ^18.2.59
+  im_util:
+    path: '../im_util'
+
 
 dev_dependencies:
   flutter_test:

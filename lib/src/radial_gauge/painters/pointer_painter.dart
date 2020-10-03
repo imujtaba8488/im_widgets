@@ -1,6 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:im_widgets/src/util.dart';
+import 'package:im_util/im_util.dart';
 
 class PointerPainter extends CustomPainter {
   final int pointTo;
@@ -29,7 +28,7 @@ class PointerPainter extends CustomPainter {
 
     List<Offset> coordinates = pointsOffsetsOnArc(
       center: center,
-      points: points,
+      numberOfPoints: points,
       radius: size.width - 50,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
@@ -45,6 +44,12 @@ class PointerPainter extends CustomPainter {
       Offset(center.dx, center.dy),
       3 * _brush.strokeWidth,
       _brush..style = PaintingStyle.fill,
+    );
+
+    canvas.drawCircle(
+      center,
+      2 * _brush.strokeWidth,
+      _brush..color = Colors.black,
     );
   }
 
