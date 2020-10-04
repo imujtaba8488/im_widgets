@@ -26,13 +26,14 @@ class PointerPainter extends CustomPainter {
       ..strokeWidth = decoration.width
       ..strokeCap = decoration.style;
 
-    List<Offset> coordinates = pointsOffsetsOnArc(
+    List<Offset> coordinates = ImaginaryArc(
       center: center,
       numberOfPoints: points,
-      radius: size.width - 50,
+      width: size.width - 50,
+      height: size.height - 50,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
-    );
+    ).offsets;
 
     canvas.drawLine(
       center,
@@ -44,12 +45,6 @@ class PointerPainter extends CustomPainter {
       Offset(center.dx, center.dy),
       3 * _brush.strokeWidth,
       _brush..style = PaintingStyle.fill,
-    );
-
-    canvas.drawCircle(
-      center,
-      2 * _brush.strokeWidth,
-      _brush..color = Colors.black,
     );
   }
 

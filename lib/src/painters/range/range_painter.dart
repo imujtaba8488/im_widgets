@@ -18,13 +18,14 @@ class RangePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    List<Offset> coordinates = pointsOffsetsOnArc(
+    List<Offset> coordinates = ImaginaryArc(
       center: size.center(Offset(0.0, 0.0)),
-      radius: size.width - 20,
+      width: size.width - 20,
+      height: size.height - 20,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
       numberOfPoints: points,
-    );
+    ).offsets;
 
     for (int i = 0; i < coordinates.length; i++) {
       TextPainter tp = TextPainter(

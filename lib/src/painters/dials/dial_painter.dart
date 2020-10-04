@@ -43,22 +43,24 @@ class DialPainter extends CustomPainter {
     // To create the ticks, first the outer path (arc / circle) offsets are generated and than the inner path offsets. Finally, both are joined to create the ticks.
 
     // Get outer path offsets.
-    List<Offset> offsets = pointsOffsetsOnArc(
+    List<Offset> offsets = ImaginaryArc(
       center: center,
       numberOfPoints: points,
-      radius: size.width,
+      width: size.width,
+      height: size.height,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
-    );
+    ).offsets;
 
     // Get inner path offsets
-    List<Offset> offsets2 = pointsOffsetsOnArc(
+    List<Offset> offsets2 = ImaginaryArc(
       center: center,
       numberOfPoints: points,
-      radius: size.width - tickLength,
+      width: size.width - tickLength,
+      height: size.height - tickLength,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
-    );
+    ).offsets;
 
     // Draw lines from outer offsets to inner offsets to draw the tick marks.
     for (int i = 0; i < offsets.length; i++) {

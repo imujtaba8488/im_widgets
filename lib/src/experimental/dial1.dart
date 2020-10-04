@@ -31,26 +31,27 @@ class Dial1 extends CustomPainter {
         ..color = Colors.purple,
     );
 
-    List<Offset> p1 = pointsOffsetsOnArc(
+    ImaginaryArc a1 = ImaginaryArc(
       center: center,
-      radius: size.width,
+      width: size.width,
+      height: size.height,
       numberOfPoints: dataPoints,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
     );
 
-    List<Offset> p2 = pointsOffsetsOnArc(
+    ImaginaryArc a2 = ImaginaryArc(
       center: center,
-      radius: size.width - 15,
+      width: size.width - 15,
+      height: size.height - 15,
       numberOfPoints: dataPoints,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
     );
 
-    for (int i = 0; i < p1.length; i++) {
-
+    for (int i = 0; i < a1.offsets.length; i++) {
       canvas.drawArc(
-        Rect.fromCenter(center: p1[i], width: 10, height: 10),
+        Rect.fromCenter(center: a1.offsets[i], width: 10, height: 10),
         toRadians(0),
         toRadians(360),
         false,
@@ -60,8 +61,8 @@ class Dial1 extends CustomPainter {
       );
 
       canvas.drawLine(
-        p1[i],
-        p2[i],
+        a1.offsets[i],
+        a2.offsets[i],
         _brush,
       );
     }
