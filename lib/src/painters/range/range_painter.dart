@@ -18,16 +18,16 @@ class RangePainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    List<Offset> coordinates = ImaginaryArc(
+    ImaginaryArc imaginaryArc1 = ImaginaryArc(
       center: size.center(Offset(0.0, 0.0)),
       width: size.width - 20,
       height: size.height - 20,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
       numberOfPoints: points,
-    ).offsets;
+    );
 
-    for (int i = 0; i < coordinates.length; i++) {
+    for (int i = 0; i < imaginaryArc1.coordinates.length; i++) {
       TextPainter tp = TextPainter(
         textDirection: TextDirection.ltr,
         textAlign: TextAlign.left,
@@ -38,7 +38,10 @@ class RangePainter extends CustomPainter {
       );
 
       tp.layout();
-      tp.paint(canvas, Offset(coordinates[i].dx - 5, coordinates[i].dy - 8));
+      tp.paint(
+        canvas,
+        imaginaryArc1.coordinates[i].toOffset.translate(-5, -8),
+      );
     }
   }
 

@@ -49,9 +49,9 @@ class Dial1 extends CustomPainter {
       sweepAngle: sweepAngle,
     );
 
-    for (int i = 0; i < a1.offsets.length; i++) {
+    for (int i = 0; i < a1.coordinates.length; i++) {
       canvas.drawArc(
-        Rect.fromCenter(center: a1.offsets[i], width: 10, height: 10),
+        Rect.fromCenter(center: a1.coordinates[i].toOffset, width: 10, height: 10),
         toRadians(0),
         toRadians(360),
         false,
@@ -61,8 +61,8 @@ class Dial1 extends CustomPainter {
       );
 
       canvas.drawLine(
-        a1.offsets[i],
-        a2.offsets[i],
+        a1.coordinates[i].toOffset,
+        a2.coordinates[i].toOffset,
         _brush,
       );
     }

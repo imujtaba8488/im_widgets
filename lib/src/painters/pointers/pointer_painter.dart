@@ -26,18 +26,18 @@ class PointerPainter extends CustomPainter {
       ..strokeWidth = decoration.width
       ..strokeCap = decoration.style;
 
-    List<Offset> coordinates = ImaginaryArc(
+    ImaginaryArc imaginaryArc = ImaginaryArc(
       center: center,
       numberOfPoints: points,
       width: size.width - 50,
       height: size.height - 50,
       startAngle: startAngle,
       sweepAngle: sweepAngle,
-    ).offsets;
+    );
 
     canvas.drawLine(
       center,
-      Offset(coordinates[pointTo].dx, coordinates[pointTo].dy),
+      imaginaryArc.coordinates[pointTo].toOffset,
       _brush,
     );
 
